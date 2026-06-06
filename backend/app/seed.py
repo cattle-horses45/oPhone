@@ -46,7 +46,7 @@ async def seed():
             {"name": "平板", "slug": "tablets", "sort_order": 2},
             {"name": "手表", "slug": "watches", "sort_order": 3},
             {"name": "耳机", "slug": "earbuds", "sort_order": 4},
-            {"name": "配件", "slug": "accessories", "sort_order": 5},
+            {"name": "电脑", "slug": "computers", "sort_order": 5},
         ]
         for cat_data in categories:
             result = await db.execute(select(Category).where(Category.slug == cat_data["slug"]))
