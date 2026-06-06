@@ -34,7 +34,8 @@ export default function HumanChatPage() {
   // Queue listener
   useEffect(() => {
     if (!token) return;
-    const s = new WebSocket(`ws://localhost:8000/ws/admin/queue?token=${token}`);
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const s = new WebSocket(`${protocol}//${window.location.host}/ws/admin/queue?token=${token}`);
     s.onmessage = e => {
       try {
         const d = JSON.parse(e.data);
@@ -51,7 +52,8 @@ export default function HumanChatPage() {
     seenRef.current = new Set();
 
     adminApi.acceptChatSession(sessionId).then(() => {
-      const s = new WebSocket(`ws://localhost:8000/ws/admin/chat/${sessionId}?token=${token}`);
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const s = new WebSocket(`${protocol}//${window.location.host}/ws/admin/chat/${sessionId}?token=${token}`);
       s.onmessage = e => {
         try {
           const d = JSON.parse(e.data);

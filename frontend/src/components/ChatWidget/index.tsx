@@ -119,7 +119,8 @@ export default function ChatWidget() {
   /* ── WebSocket lifecycle ── */
   useEffect(() => {
     if (!sessionId || !token) return;
-    const ws = new WebSocket(`ws://localhost:8000/ws/chat/${sessionId}?token=${token}`);
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const ws = new WebSocket(`${protocol}//${window.location.host}/ws/chat/${sessionId}?token=${token}`);
     wsRef.current = ws;
     ws.onmessage = (e) => {
       try {
