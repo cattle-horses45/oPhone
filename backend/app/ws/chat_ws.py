@@ -246,7 +246,7 @@ async def handle_user_message(
         ))
 
     # 7. 检测是否需要转人工
-    should_transfer, reason = should_transfer_to_human(content, ai_reply)
+    should_transfer, reason = should_transfer_to_human(content, full_reply)
     if should_transfer:
         session.session_type = "human"
         session.transfer_reason = reason
