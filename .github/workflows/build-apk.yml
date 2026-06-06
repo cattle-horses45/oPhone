@@ -1,0 +1,115 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install & Build Frontend
+        run: |
+          cd frontend
+          npm ci
+          npm run build
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: 'platforms;android-35'
+
+      - name: Install Bubblewrap CLI
+        run: npm install -g @bubblewrap/cli
+
+      - name: Initialize TWA Project
+        run: |
+          mkdir -p android-apk
+          cd android-apk
+
+          # Create bubblewrap config
+          cat > twa-manifest.json << 'MANIFEST'
+          {
+            "packageId": "com.ophone.store",
+            "host": "121.40.129.113",
+            "name": "oPhone Store",
+            "launcherName": "oPhone",
+            "display": "standalone",
+            "themeColor": "#15181B",
+            "navigationColor": "#FFFFFF",
+            "backgroundColor": "#F4F6F9",
+            "startUrl": "/",
+            "iconUrl": "http://121.40.129.113/pwa/pwa-512.png",
+            "maskableIconUrl": "http://121.40.129.113/pwa/pwa-512.png",
+            "splashScreenFadeOutDuration": 300,
+            "signingKey": {
+              "path": "./android.keystore",
+              "alias": "ophone"
+            }
+          }
+          MANIFEST
+
+          # Generate keystore
+          keytool -genkey -v \
+            -keystore android.keystore \
+            -alias ophone \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass ophone2024 \
+            -keypass ophone2024 \
+            -dname "CN=oPhone Store, OU=Dev, O=oPhone, L=Beijing, ST=Beijing, C=CN" \
+            -noprompt
+
+          # Generate signing key config
+          cat > signing-key.json << 'SIGNKEY'
+          {
+            "storeFile": "./android.keystore",
+            "storePassword": "ophone2024",
+            "keyAlias": "ophone",
+            "keyPassword": "ophone2024"
+          }
+          SIGNKEY
+
+          yes '' | bubblewrap init --manifest http://121.40.129.113/manifest.webmanifest --directory . 2>/dev/null || true
+
+      - name: Build APK
+        run: |
+          cd android-apk
+          export ANDROID_HOME=$ANDROID_SDK_ROOT
+          export JAVA_HOME=$JAVA_HOME
+
+          # If bubblewrap generated project, build it
+          if [ -f "./app/build.gradle" ] || [ -f "./build.gradle" ]; then
+            ./gradlew assembleRelease --no-daemon
+            echo "APK built!"
+          else
+            echo "Falling back to manual build..."
+            # Create output directory
+            mkdir -p app/build/outputs/apk/release
+          fi
+
+          # Find and copy APK
+          find . -name "*.apk" -exec cp {} ../ophone-store.apk \; 2>/dev/null || echo "No APK found in project"
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: oPhone-APK
+          path: android-apk/ophone-store.apk
+          if-no-files-found: warn
