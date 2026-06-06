@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+env/
+*.db
+
+# Node
+node_modules/
+frontend/dist/
+frontend/build/
+
+# 环境变量
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 上传文件(开发环境)
+backend/uploads/products/*
+backend/uploads/banners/*
+!backend/uploads/products/.gitkeep
+!backend/uploads/banners/.gitkeep

@@ -1,0 +1,326 @@
+@import "tailwindcss";
+
+/* ================================================================
+   OPHONE DESIGN SYSTEM — "The Silent Gallery"
+   Cold-tone dominant · Sans + Mono · Flat-by-default · WCAG AA
+   ================================================================ */
+
+@theme {
+  /* Primary text — cool near-black */
+  --color-ophone-black: #15181B;
+  /* Light surface — inputs, footer, sidebar */
+  --color-ophone-black-light: #EEF1F5;
+  /* Accent — steel blue (used sparingly, ≤10% per screen) */
+  --color-ophone-gold: #3D6A94;
+  /* Accent light — gradients, subtle highlights */
+  --color-ophone-gold-light: #5C8DB8;
+  /* Accent dark — hover/active states */
+  --color-ophone-gold-dark: #2F5579;
+  /* Accent dim — subtle accent backgrounds */
+  --color-ophone-gold-dim: #D0E1EF;
+  /* Secondary text — cool gray, 4.7:1 on white */
+  --color-ophone-blue: #5F6B7A;
+  /* Page background — cool light gray */
+  --color-ophone-white: #F4F6F9;
+  /* Muted/placeholder text */
+  --color-ophone-gray: #8B95A5;
+  /* Card background */
+  --color-ophone-card: #FFFFFF;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+  background: #F4F6F9;
+  color: #15181B;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* ===== Background — clean, static, no decoration ===== */
+.particle-bg {
+  position: fixed; inset: 0; z-index: 0; overflow: hidden;
+  background:
+    linear-gradient(180deg, #F7F9FB 0%, #F4F6F9 30%, #EEF1F5 70%, #F4F6F9 100%);
+}
+
+/* No decorative particles — removed. The background is clean and static. */
+
+/* ===== Card — flat white, shadow only on hover ===== */
+.glass-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.glass-card:hover {
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+  transform: translateY(-1px);
+}
+
+/* ===== Primary Button — accent, sparing use ===== */
+.btn-gold {
+  background: #3D6A94;
+  color: #FFFFFF;
+  font-weight: 500;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+.btn-gold:hover {
+  background: #2F5579;
+  transform: translateY(-1px);
+}
+.btn-gold:active {
+  transform: translateY(0);
+}
+.btn-gold:disabled {
+  opacity: 0.4; cursor: not-allowed; transform: none;
+}
+.btn-gold:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(61, 106, 148, 0.25);
+}
+
+.btn-outline-gold {
+  background: transparent;
+  color: #3D6A94;
+  border: 1px solid rgba(61, 106, 148, 0.3);
+  padding: 10px 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+}
+.btn-outline-gold:hover {
+  background: rgba(61, 106, 148, 0.06);
+  border-color: #3D6A94;
+}
+.btn-outline-gold:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(61, 106, 148, 0.25);
+}
+
+/* ===== Input Fields ===== */
+.input-luxury {
+  width: 100%;
+  padding: 12px 16px;
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 6px;
+  color: #15181B;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.input-luxury::placeholder { color: #8B95A5; }
+.input-luxury:focus {
+  border-color: #3D6A94;
+  box-shadow: 0 0 0 3px rgba(61, 106, 148, 0.12);
+}
+
+/* ===== Accent Text ===== */
+.text-gold-glow {
+  color: #3D6A94;
+}
+
+/* ===== Page Content Layer ===== */
+.page-content { position: relative; z-index: 2; }
+
+/* ===== Scrollbar — subtle, cool tone ===== */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #EEF1F5; }
+::-webkit-scrollbar-thumb { background: rgba(15, 23, 42, 0.12); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(15, 23, 42, 0.22); }
+
+/* ===== Focus visible — WCAG AA keyboard navigation ===== */
+*:focus-visible {
+  outline: none;
+}
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  box-shadow: 0 0 0 3px rgba(61, 106, 148, 0.25);
+}
+
+/* Line clamp utils */
+.line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ================================================================
+   FESTIVAL — Brutalist Editorial Aesthetic
+   (Self-contained theme, unchanged)
+   ================================================================ */
+
+:root {
+  --fest-ink: #0D0D0D;
+  --fest-paper: #F7F2EB;
+  --fest-vermillion: #E63946;
+  --fest-cerulean: #0066FF;
+  --fest-gold: #C4A35A;
+  --fest-white: #FCFAF7;
+  --fest-concrete: #D4CFC8;
+  --fest-shadow: 4px 4px 0px rgba(0,0,0,0.12);
+}
+
+/* Festival body override */
+.festival-body {
+  font-family: 'DM Sans', 'Noto Sans SC', system-ui, sans-serif;
+  background: var(--fest-paper);
+  color: var(--fest-ink);
+}
+
+/* Display typography */
+.fest-display {
+  font-family: 'Bodoni Moda', 'Noto Serif SC', 'Georgia', serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+.fest-mono {
+  font-family: 'Space Mono', 'Courier New', monospace;
+  letter-spacing: -0.04em;
+}
+
+/* Halftone dot texture */
+.fest-halftone {
+  position: relative;
+}
+.fest-halftone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: radial-gradient(circle, var(--fest-ink) 1px, transparent 1px);
+  background-size: 8px 8px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Brutalist card */
+.fest-card-brutal {
+  background: var(--fest-white);
+  border: 2px solid var(--fest-ink);
+  box-shadow: var(--fest-shadow);
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.2s ease;
+}
+.fest-card-brutal:active {
+  transform: scale(0.97);
+  box-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+}
+
+/* Thick accent border strip */
+.fest-border-vermillion {
+  border-left: 4px solid var(--fest-vermillion);
+}
+
+/* Staggered reveal animation */
+.fest-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+              transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.fest-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Block label pill */
+.fest-label {
+  display: inline-block;
+  font-family: 'Space Mono', 'Courier New', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border: 1.5px solid currentColor;
+}
+
+/* Price display */
+.fest-price {
+  font-family: 'DM Sans', 'Noto Sans SC', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--fest-vermillion);
+  letter-spacing: -0.03em;
+}
+
+/* Waterfall grid */
+.fest-waterfall {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 14px;
+}
+
+/* Floating icon bar */
+.fest-float {
+  position: fixed;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.fest-float-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 2px;
+  background: var(--fest-white);
+  border: 1.5px solid var(--fest-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.fest-float-btn:active {
+  transform: scale(0.9);
+  box-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+
+/* Section number marker */
+.fest-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--fest-concrete);
+  letter-spacing: 0.15em;
+}
+
+/* Horizontal rule - thick + thin */
+.fest-rule {
+  height: 1px;
+  background: var(--fest-ink);
+  position: relative;
+}
+.fest-rule::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--fest-ink);
+  opacity: 0.15;
+}

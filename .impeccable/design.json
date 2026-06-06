@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-05T16:00:00.000Z",
+  "title": "Design System: oPhone Store — Precision Instruments",
+  "extensions": {
+    "colorMeta": {
+      "deep-steel": { "role": "primary", "displayName": "Deep Steel", "canonical": "oklch(48% 0.09 254)", "tonalRamp": ["oklch(18% 0.09 254)", "oklch(25% 0.09 254)", "oklch(33% 0.09 254)", "oklch(40% 0.09 254)", "oklch(48% 0.09 254)", "oklch(58% 0.09 254)", "oklch(70% 0.07 254)", "oklch(88% 0.03 254)"] },
+      "frosted-steel": { "role": "primary-light", "displayName": "Frosted Steel", "canonical": "oklch(58% 0.09 254)" },
+      "forged-iron": { "role": "primary-dark", "displayName": "Forged Iron", "canonical": "oklch(38% 0.10 254)" },
+      "steel-mist": { "role": "primary-dim", "displayName": "Steel Mist", "canonical": "oklch(90% 0.03 254)" },
+      "cool-slate": { "role": "neutral-bg", "displayName": "Cool Slate", "canonical": "oklch(97% 0.003 254)", "tonalRamp": ["oklch(82% 0.005 254)", "oklch(86% 0.004 254)", "oklch(90% 0.003 254)", "oklch(93% 0.003 254)", "oklch(95% 0.003 254)", "oklch(97% 0.003 254)", "oklch(98% 0.002 254)", "oklch(99% 0.001 254)"] },
+      "pure-white": { "role": "neutral-surface", "displayName": "Pure White", "canonical": "#FFFFFF" },
+      "chalk": { "role": "neutral-surface-alt", "displayName": "Chalk", "canonical": "oklch(95% 0.003 254)" },
+      "cold-ink": { "role": "neutral-text", "displayName": "Cold Ink", "canonical": "oklch(15% 0.01 254)" },
+      "gunmetal": { "role": "neutral-text-secondary", "displayName": "Gunmetal", "canonical": "oklch(48% 0.02 254)" },
+      "oxide-gray": { "role": "neutral-text-muted", "displayName": "Oxide Gray", "canonical": "oklch(65% 0.01 254)" }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Headline", "purpose": "Page-level hero headings. Used sparingly (once per page)." },
+      "title": { "displayName": "Title", "purpose": "Section headers, product names, card titles." },
+      "body": { "displayName": "Body", "purpose": "Running text, descriptions, prose content. Max 65-75ch per line." },
+      "label": { "displayName": "Label", "purpose": "Navigation items, form labels, category tags." },
+      "mono": { "displayName": "Mono", "purpose": "Prices, SKU codes, order numbers, spec data. The sole data anchor." }
+    },
+    "shadows": [
+      { "name": "hover-soft", "value": "0 2px 12px rgba(15,23,42,0.06)", "purpose": "Card hover: subtle lift confirmation. 2px y-offset, 12px blur." },
+      { "name": "focus-ring", "value": "0 0 0 3px rgba(61,106,148,0.15)", "purpose": "Keyboard focus indicator. WCAG AA visible focus state." },
+      { "name": "elevated-nav", "value": "0 1px 8px rgba(15,23,42,0.04)", "purpose": "Sticky navigation bar only. Separates nav from scrolling content." }
+    ],
+    "motion": [
+      { "name": "ease-soft", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default transition easing. Standard Material ease-out." },
+      { "name": "duration-quick", "value": "150ms", "purpose": "Color changes, focus rings, instant feedback." },
+      { "name": "duration-standard", "value": "200ms", "purpose": "Hover lifts, shadow appear, border color shifts." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main CTA. Deep Steel solid fill, white text. Used ≤3 times per screen per the 10% Rule.",
+      "html": "<button class=\"ds-btn-primary\">探索全部商品</button>",
+      "css": ".ds-btn-primary { background: #3D6A94; color: #FFFFFF; border: none; padding: 12px 32px; border-radius: 6px; font-family: 'Inter','Noto Sans SC',system-ui,sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 0.02em; cursor: pointer; transition: background 0.2s cubic-bezier(0.4,0,0.2,1), transform 0.15s cubic-bezier(0.4,0,0.2,1); } .ds-btn-primary:hover { background: #2F5579; transform: translateY(-1px); } .ds-btn-primary:active { transform: translateY(0); } .ds-btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(61,106,148,0.15); }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action. Transparent with steel blue border. For actions adjacent to primary.",
+      "html": "<button class=\"ds-btn-outline\">查看详情</button>",
+      "css": ".ds-btn-outline { background: transparent; color: #3D6A94; border: 1px solid rgba(61,106,148,0.3); padding: 10px 28px; border-radius: 6px; font-family: 'Inter','Noto Sans SC',system-ui,sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.02em; cursor: pointer; transition: background 0.2s cubic-bezier(0.4,0,0.2,1), border-color 0.2s cubic-bezier(0.4,0,0.2,1); } .ds-btn-outline:hover { background: rgba(61,106,148,0.06); border-color: #3D6A94; } .ds-btn-outline:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(61,106,148,0.15); }"
+    },
+    {
+      "name": "Content Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Standard container. Pure white, 1px cold-gray border, flat at rest. Lifts softly on hover.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">oPhone X30 Ultra</h3><p class=\"ds-card-text\">旗舰影像 · 徕卡光学镜头</p></div>",
+      "css": ".ds-card { background: #FFFFFF; border: 1px solid rgba(15,23,42,0.06); border-radius: 8px; padding: 24px; transition: border-color 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s cubic-bezier(0.4,0,0.2,1), transform 0.2s cubic-bezier(0.4,0,0.2,1); } .ds-card:hover { border-color: rgba(15,23,42,0.1); box-shadow: 0 2px 12px rgba(15,23,42,0.06); transform: translateY(-1px); } .ds-card-title { font-family: 'Inter','Noto Sans SC',system-ui,sans-serif; font-size: 15px; font-weight: 600; color: #15181B; margin: 0 0 4px 0; } .ds-card-text { font-family: 'Inter','Noto Sans SC',system-ui,sans-serif; font-size: 13px; color: #5F6B7A; margin: 0; line-height: 1.5; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Standard form input. Clean white with cold-gray border, steel blue focus ring.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"搜索 oPhone 商品...\" />",
+      "css": ".ds-input { width: 100%; padding: 12px 16px; background: #FFFFFF; border: 1px solid rgba(15,23,42,0.1); border-radius: 6px; color: #15181B; font-family: 'Inter','Noto Sans SC',system-ui,sans-serif; font-size: 15px; outline: none; transition: border-color 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s cubic-bezier(0.4,0,0.2,1); } .ds-input::placeholder { color: #8B95A5; } .ds-input:focus { border-color: #3D6A94; box-shadow: 0 0 0 3px rgba(61,106,148,0.12); } .ds-input:disabled { background: #EEF1F5; color: #8B95A5; cursor: not-allowed; }"
+    },
+    {
+      "name": "Chat FAB",
+      "kind": "button",
+      "refersTo": "chat-fab",
+      "description": "Fixed floating action button for AI chat. Steel blue gradient circle, bottom-right.",
+      "html": "<button class=\"ds-chat-fab\" aria-label=\"打开客服\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z\"/></svg></button>",
+      "css": ".ds-chat-fab { width: 56px; height: 56px; border-radius: 50%; border: none; background: linear-gradient(135deg, #2F5579, #3D6A94); box-shadow: 0 4px 20px rgba(61,106,148,0.25); cursor: pointer; display: flex; align-items: center; justify-content: center; position: fixed; bottom: 24px; right: 24px; z-index: 50; transition: transform 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s cubic-bezier(0.4,0,0.2,1); } .ds-chat-fab:hover { transform: scale(1.05); box-shadow: 0 6px 28px rgba(61,106,148,0.35); } .ds-chat-fab:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(61,106,148,0.15), 0 4px 20px rgba(61,106,148,0.25); }"
+    },
+    {
+      "name": "Chat Bubble - User",
+      "kind": "custom",
+      "refersTo": "chat-bubble-user",
+      "description": "User message bubble. Steel blue gradient, right-aligned, small bottom-right corner radius.",
+      "html": "<div style=\"display:flex;justify-content:flex-end\"><div class=\"ds-chat-bubble-user\">这款手机支持5G吗？</div></div>",
+      "css": ".ds-chat-bubble-user { max-width: 82%; padding: 10px 16px; border-radius: 16px 16px 4px 16px; background: linear-gradient(135deg, #2F5579, #3D6A94); color: #FFFFFF; font-family: 'Inter','Noto Sans SC',system-ui,sans-serif; font-size: 14px; line-height: 1.6; }"
+    },
+    {
+      "name": "Chat Bubble - AI",
+      "kind": "custom",
+      "refersTo": "chat-bubble-ai",
+      "description": "AI reply bubble. Chalk background, left-aligned, small bottom-left corner radius.",
+      "html": "<div style=\"display:flex;justify-content:flex-start\"><div class=\"ds-chat-bubble-ai\">您好！是的，oPhone X30 Ultra 支持 5G 全网通。</div></div>",
+      "css": ".ds-chat-bubble-ai { max-width: 82%; padding: 10px 16px; border-radius: 16px 16px 16px 4px; background: #EEF1F5; border: 1px solid rgba(15,23,42,0.05); color: #15181B; font-family: 'Inter','Noto Sans SC',system-ui,sans-serif; font-size: 14px; line-height: 1.6; }"
+    },
+    {
+      "name": "Product Card",
+      "kind": "card",
+      "refersTo": "product-card",
+      "description": "Product thumbnail card. Image area with subtle gradient, text area with name/price. Flat at rest, soft-lift on hover.",
+      "html": "<div class=\"ds-product-card\"><div class=\"ds-product-card-img\"><span style=\"font-size:48px\">📱</span></div><div class=\"ds-product-card-body\"><h3 class=\"ds-product-card-name\">oPhone X30 Ultra</h3><p class=\"ds-product-card-brand\">oPhone</p><span class=\"ds-product-card-price\">¥5999</span></div></div>",
+      "css": ".ds-product-card { background: #FFFFFF; border: 1px solid rgba(15,23,42,0.06); border-radius: 8px; overflow: hidden; transition: border-color 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s cubic-bezier(0.4,0,0.2,1), transform 0.2s cubic-bezier(0.4,0,0.2,1); cursor: pointer; } .ds-product-card:hover { border-color: rgba(15,23,42,0.1); box-shadow: 0 2px 12px rgba(15,23,42,0.06); transform: translateY(-1px); } .ds-product-card-img { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #EEF1F5, #F7F9FB); } .ds-product-card-body { padding: 16px; } .ds-product-card-name { font-family: 'Inter','Noto Sans SC',system-ui,sans-serif; font-size: 14px; font-weight: 500; color: #5F6B7A; margin: 0 0 2px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.05em; } .ds-product-card:hover .ds-product-card-name { color: #3D6A94; } .ds-product-card-brand { font-family: 'Inter','Noto Sans SC',system-ui,sans-serif; font-size: 12px; color: #8B95A5; margin: 0 0 12px 0; } .ds-product-card-price { font-family: 'Inter','Noto Sans SC',system-ui,sans-serif; font-size: 18px; font-weight: 700; color: #3D6A94; }"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Header navigation item. Gunmetal default, Deep Steel on hover. Subtle, precise.",
+      "html": "<nav style=\"display:flex;gap:32px;align-items:center;padding:0 24px;height:64px;background:rgba(255,255,255,0.92);border-bottom:1px solid rgba(15,23,42,0.06)\"><span style=\"font-family:'Inter','Noto Sans SC',system-ui,sans-serif;font-size:18px;font-weight:600;color:#3D6A94;letter-spacing:0.05em\">oPhone</span><a class=\"ds-nav-link\" href=\"#\">首页</a><a class=\"ds-nav-link\" href=\"#\">全部商品</a></nav>",
+      "css": ".ds-nav-link { font-family: 'Inter','Noto Sans SC',system-ui,sans-serif; font-size: 14px; font-weight: 400; color: #5F6B7A; text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s cubic-bezier(0.4,0,0.2,1); } .ds-nav-link:hover { color: #3D6A94; } .ds-nav-link:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(61,106,148,0.15); border-radius: 4px; }"
+    },
+    {
+      "name": "Stat Card (Admin)",
+      "kind": "card",
+      "refersTo": "stat-card",
+      "description": "Dashboard metric card. Mono font for numbers, muted label, colored left icon marker.",
+      "html": "<div class=\"ds-stat-card\"><div class=\"ds-stat-icon\" style=\"background:#6c8eef\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\"><path d=\"M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197\"/></svg></div><div><p class=\"ds-stat-label\">用户总数</p><p class=\"ds-stat-value\">12,847</p></div></div>",
+      "css": ".ds-stat-card { background: #FFFFFF; border: 1px solid rgba(15,23,42,0.06); border-radius: 8px; padding: 20px; display: flex; align-items: center; gap: 16px; transition: border-color 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s cubic-bezier(0.4,0,0.2,1); } .ds-stat-card:hover { border-color: rgba(15,23,42,0.1); box-shadow: 0 2px 12px rgba(15,23,42,0.06); } .ds-stat-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; } .ds-stat-label { font-family: 'Inter','Noto Sans SC',system-ui,sans-serif; font-size: 13px; font-weight: 400; color: #5F6B7A; margin: 0 0 4px 0; } .ds-stat-value { font-family: 'Space Mono','Courier New',monospace; font-size: 24px; font-weight: 700; color: #15181B; margin: 0; letter-spacing: -0.02em; }"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Status indicator chip. Low-saturation semantic background + darker text. Rounded-full pill.",
+      "html": "<span class=\"ds-badge ds-badge-success\">已完成</span> <span class=\"ds-badge ds-badge-warning\">待付款</span> <span class=\"ds-badge ds-badge-info\">已发货</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; border-radius: 9999px; font-family: 'Inter','Noto Sans SC',system-ui,sans-serif; font-size: 12px; font-weight: 500; border: 1px solid transparent; } .ds-badge-success { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; } .ds-badge-warning { background: #fffbeb; color: #92400e; border-color: #fde68a; } .ds-badge-info { background: #eff6ff; color: #1e40af; border-color: #bfdbfe; } .ds-badge-danger { background: #fef2f2; color: #991b1b; border-color: #fecaca; } .ds-badge-neutral { background: #EEF1F5; color: #5F6B7A; border-color: rgba(15,23,42,0.08); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Precision Instrument",
+    "overview": "oPhone Store 的设计系统不是装饰，是校准过的精密仪器。每个像素都有计量学意义。字体排印如同技术文档——清晰、可读、不加修饰。颜色来自工业色卡：冷调钢材、氧化铁灰、霜面玻璃。交互反馈是温和的——按钮不会\"弹跳\"，卡片不会\"漂浮\"，它们只是做出确认，然后安静地完成任务。这个系统相信一个原则：信任来自一致性，而不是奇观。",
+    "keyCharacteristics": [
+      "工业冷色调色板：钢蓝 + 冷灰 + 冷黑，无暖色混入",
+      "单字体族策略：Inter 贯穿所有层级，Space Mono 作为数据锚点",
+      "Soft-touch 交互：hover 温和抬起 1px + 柔光扩散，过渡 200ms",
+      "扁平默认，阴影仅作为状态信号",
+      "6px / 8px 圆角体系：足够柔和，不过度圆润",
+      "WCAG AA 合规：正文对比度 ≥4.5:1，键盘可导航"
+    ],
+    "rules": [
+      { "name": "The 10% Rule", "body": "Deep Steel 在任何页面上的总面积 ≤10%。如果一屏出现超过 3 个强调色元素，重新审视设计。", "section": "colors" },
+      { "name": "The Cold Canvas Rule", "body": "所有背景色必须带冷色调。禁止纯中性灰 (#808080 系)，禁止暖色底色。冷灰基底是\"科技感\"的最基本保证。", "section": "colors" },
+      { "name": "The One Accent Rule", "body": "系统只有一个强调色族 (Deep Steel → Frosted Steel → Forged Iron)。语义色使用低饱和度变体，不与钢蓝竞争视觉权重。", "section": "colors" },
+      { "name": "The Single-Typeface Rule", "body": "整个系统使用一个字族 (Inter) 做所有标题和正文。Space Mono 仅限于数据类标签。不用第三种字体。", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "静态表面必须扁平。阴影只出现在 hover、focus、active 三种状态。", "section": "elevation" },
+      { "name": "The Soft-Lift Rule", "body": "hover 时的 elevation 变化：translateY(-1px) + 柔光扩散 12px，过渡 200ms ease-out。没有弹跳。", "section": "elevation" }
+    ],
+    "dos": [
+      "Do 使用 Cool Slate (#F4F6F9) 作为所有页面的默认背景色",
+      "Do 保持 Deep Steel 稀缺——每屏不超过 3 个强调色元素",
+      "Do 给内容充分呼吸空间——Section 间距 64-80px，卡片内边距 24px",
+      "Do 使用 1px 冷灰边框 + Pure White 底色定义卡片，代替阴影",
+      "Do 确保所有文本对比度 ≥4.5:1（正文）或 ≥3:1（大标题）",
+      "Do 为所有交互元素提供 focus-visible：3px Deep Steel 15% 环",
+      "Do 尊重 prefers-reduced-motion：关闭过渡，即时状态切换",
+      "Do Inter 一个字族做所有层级——标题 vs 正文用 weight + size 区分",
+      "Do 圆角 6px（按钮/输入框）或 8px（卡片）"
+    ],
+    "donts": [
+      "Don't 使用 Inter + 紫色渐变 + 圆角卡片 + 嵌套阴影的 SaaS 模板组合",
+      "Don't 使用暖色调底色（奶油色、米色、暖白）",
+      "Don't 使用暗黑背景 + 金色/铜色强调色（旧 oPhone 主题）",
+      "Don't 添加弹窗、倒计时、促销标签、闪烁动画",
+      "Don't 使用渐变文字、发光阴影、多重投影",
+      "Don't 在静态卡片上使用阴影——扁平默认，阴影仅作状态信号",
+      "Don't 使用超过 8px 的圆角",
+      "Don't 引入第三种字体族（只有 Inter + Space Mono）",
+      "Don't 使用 border-left >1px 的彩色侧边条"
+    ]
+  }
+}
