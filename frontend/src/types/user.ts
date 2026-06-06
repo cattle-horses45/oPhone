@@ -37,6 +37,7 @@ export interface RegisterRequest {
   password: string;
   email?: string;
   phone?: string;
+  full_name?: string;
 }
 
 export interface LoginResponse {

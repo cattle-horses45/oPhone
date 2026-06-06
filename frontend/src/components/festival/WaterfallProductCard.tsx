@@ -86,7 +86,7 @@ export default function WaterfallProductCard({ product }: Props) {
         <span className="fest-price" style={{ fontSize: 20 }}>
           ¥{product.min_price ?? '--'}
         </span>
-        {product.sales_count > 0 && (
+        {(product.sales_count ?? 0) > 0 && (
           <span className="text-[10px]" style={{ color: 'var(--fest-concrete)' }}>
             · 售{product.sales_count}
           </span>

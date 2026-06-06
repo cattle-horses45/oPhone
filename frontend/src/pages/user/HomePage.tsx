@@ -42,7 +42,7 @@ export default function HomePage() {
 
   useEffect(() => {
     getCategories()
-      .then(data => setCategories(Array.isArray(data) ? data : (data.items || data)))
+      .then(data => setCategories(Array.isArray(data) ? data : []))
       .catch(() => setCategories([]))
       .finally(() => setCatsLoading(false));
 
