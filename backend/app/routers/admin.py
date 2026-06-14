@@ -301,11 +301,21 @@ async def admin_list_products(
             .order_by(ProductImage.sort_order)
             .limit(1)
         )
+        # 获取图片数量
+        image_count = await db.scalar(
+            select(func.count(ProductImage.id)).where(ProductImage.product_id == p.id)
+        )
+        # 获取分类名称
+        from app.models.product import Category
+        category_name = await db.scalar(
+            select(Category.name).where(Category.id == p.category_id)
+        )
         products.append({
             "id": p.id,
             "name": p.name,
             "slug": p.slug,
             "category_id": p.category_id,
+            "category_name": category_name or "-",
             "brand": p.brand,
             "is_active": p.is_active,
             "is_featured": p.is_featured,
@@ -313,6 +323,7 @@ async def admin_list_products(
             "min_price": float(min_price) if min_price else 0,
             "total_stock": total_stock,
             "cover_image": cover_image,
+            "image_count": image_count or 0,
             "created_at": p.created_at.isoformat() if p.created_at else None,
             "updated_at": p.updated_at.isoformat() if p.updated_at else None,
         })

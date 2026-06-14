@@ -170,6 +170,7 @@ export default function ProductManagePage() {
               <tr style={{ background: 'rgba(0,0,0,0.02)' }}>
                 <th className="text-left py-3 px-5 text-xs font-medium" style={{ color: C.textMuted }}>ID</th>
                 <th className="text-left py-3 px-5 text-xs font-medium" style={{ color: C.textMuted }}>商品名称</th>
+                <th className="text-left py-3 px-5 text-xs font-medium" style={{ color: C.textMuted }}>分类</th>
                 <th className="text-left py-3 px-5 text-xs font-medium" style={{ color: C.textMuted }}>品牌</th>
                 <th className="text-right py-3 px-5 text-xs font-medium" style={{ color: C.textMuted }}>最低价</th>
                 <th className="text-right py-3 px-5 text-xs font-medium" style={{ color: C.textMuted }}>库存</th>
@@ -180,7 +181,7 @@ export default function ProductManagePage() {
             </thead>
             <tbody>
               {products.length === 0 ? (
-                <tr><td colSpan={8} className="text-center py-14 text-xs" style={{ color: C.textMuted }}>
+                <tr><td colSpan={9} className="text-center py-14 text-xs" style={{ color: C.textMuted }}>
                   <p className="mb-2">暂无商品</p>
                   <button onClick={handleOpenCreate} className="underline hover:opacity-80" style={{ color: C.accent }}>点击添加第一个商品</button>
                 </td></tr>
@@ -190,14 +191,25 @@ export default function ProductManagePage() {
                   onMouseLeave={e => e.currentTarget.style.background = i % 2 === 0 ? 'transparent' : 'rgba(0,0,0,0.02)'}>
                   <td className="py-2.5 px-5 text-xs font-mono" style={{ color: C.textMuted }}>{p.id}</td>
                   <td className="py-2.5 px-5 text-xs font-medium" style={{ color: C.textPrimary }}>{p.name}</td>
+                  <td className="py-2.5 px-5 text-xs" style={{ color: C.textSecondary }}>
+                    <span className="px-1.5 py-0.5 rounded" style={{ background: '#EEF1F5' }}>{p.category_name || '-'}</span>
+                  </td>
                   <td className="py-2.5 px-5 text-xs" style={{ color: C.textSecondary }}>{p.brand}</td>
                   <td className="py-2.5 px-5 text-xs text-right" style={{ color: C.accent }}>¥{p.min_price || '—'}</td>
                   <td className="py-2.5 px-5 text-xs text-right" style={{ color: C.textSecondary }}>{p.total_stock ?? '—'}</td>
                   <td className="py-2.5 px-5 text-center">
+                    {p.image_count > 0 ? (
+                      <span title={`已添加 ${p.image_count} 张图片`} style={{ cursor: 'default' }}>
+                        <span style={{ color: C.success, fontSize: 14 }}>✓</span>
+                        <span className="text-xs ml-1" style={{ color: C.success }}>{p.image_count}</span>
+                      </span>
+                    ) : (
+                      <span title="未添加图片" style={{ color: C.textMuted, fontSize: 13 }}>—</span>
+                    )}
                     <button onClick={() => handleAddImageToProduct(p.id)}
-                      className="text-xs px-2 py-0.5 rounded transition-colors"
-                      style={{ background: 'rgba(108,142,239,0.1)', color: '#6c8eef' }}>
-                      +图片
+                      className="text-xs px-1.5 py-0.5 rounded ml-1.5 transition-colors"
+                      style={{ background: 'rgba(108,142,239,0.08)', color: '#6c8eef', fontSize: 10 }}>
+                      +图
                     </button>
                   </td>
                   <td className="py-2.5 px-5 text-center">
