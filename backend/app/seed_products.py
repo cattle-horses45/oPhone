@@ -116,50 +116,101 @@ SKU_TEMPLATES = {
     ],
 }
 
-# AI 知识库 —— 覆盖所有品类+订单+售后
+# AI 知识库 —— 覆盖所有品类+订单+售后（80产品全覆盖）
 KNOWLEDGE_ITEMS = [
-    # === 手机 (product) ===
-    ("oPhone X30 Ultra+ 支持几倍光学变焦？", "oPhone X30 Ultra+ 搭载第二代2亿像素潜望长焦，支持10倍光学变焦和200倍数字变焦。AI超分算法让远摄更清晰。", "product", "X30,变焦,相机,拍照,Ultra+", 8),
-    ("oPhone Fold 2 屏幕折痕明显吗？", "oPhone Fold 2 采用第三代UTG超薄玻璃+水滴铰链设计，日常使用折痕几乎不可见。屏幕承诺40万次折叠寿命。", "product", "折叠,折痕,铰链,Fold", 8),
-    ("oPhone Flip 2 电池续航如何？", "oPhone Flip 2 内建4200mAh双电池设计，日常使用一天无压力。支持44W有线快充和15W无线充电。", "product", "Flip,折叠,续航,电池", 7),
-    ("oPhone 手机支持5G吗？", "所有oPhone手机均支持5G全网通（n1/n3/n5/n8/n28/n41/n77/n78频段）。双卡双5G待机。", "product", "5G,网络,双卡", 10),
-    ("oPhone Note 20 的 S Pen 有什么功能？", "oPhone Note 20 内置 S Pen 支持4096级压感、蓝牙遥控拍照、隔空手势翻页、手写笔记转文字。商务办公利器。", "product", "Note,S Pen,手写笔", 7),
-    ("oPhone GT Neo 玩游戏散热怎么样？", "oPhone GT Neo 搭载天工散热系统3.0：12000mm²超大VC均热板+石墨烯导热片+AI温控算法。王者荣耀120帧满帧不降频。", "product", "散热,游戏,GT,电竞", 7),
-    ("oPhone C50 和 C50 Pro 有什么区别？", "C50 Pro 升级了AMOLED屏幕（C50为LCD）、1亿像素主摄（C50为5000万）、67W快充（C50为33W）。价格相差约300元。", "product", "C50,对比,区别", 6),
+    # ============================================================
+    # === 手机产品全系列 (10款) ===
+    # ============================================================
+    ("oPhone 有哪些手机型号？", "oPhone手机产品线共10款：旗舰折叠系列——oPhone X30 Ultra+（影像旗舰）、oPhone Fold 2（大折叠）、oPhone Flip 2（竖折叠）；性能系列——oPhone Note 20（商务大屏）、oPhone GT Neo（电竞）、oPhone S20（入门旗舰）、oPhone S20 Ultra（续航王）；普及系列——oPhone X30 Lite（轻薄中端）、oPhone C50（5G普及）、oPhone C50 Pro（千元影像）。价格从1499元到8999元不等。", "product", "手机,型号,全部,产品线,列表", 10),
+    ("oPhone X30 Ultra+ 有什么特点？", "oPhone X30 Ultra+ 是年度影像旗舰：6.8英寸2K+ LTPO屏，第二代2亿像素主摄，骁龙8 Elite芯片，5500mAh+120W快充，IP68防水。支持10倍光学变焦和200倍数字变焦，AI超分算法让远摄更清晰。售价5999-8999元。", "product", "X30,Ultra+,旗舰,变焦,相机,拍照", 10),
+    ("oPhone X30 Lite 怎么样？", "oPhone X30 Lite 是轻薄影像中端机：6.55英寸120Hz AMOLED，6400万OIS主摄，4500mAh+67W快充，仅7.9mm超薄机身。适合追求轻薄手感+好拍照的用户。售价2999-3999元。", "product", "X30,Lite,轻薄,中端,拍照", 7),
+    ("oPhone S20 和 S20 Ultra 怎么选？", "S20 定位入门旗舰：6.5英寸90Hz OLED，5000万主摄，4800mAh+44W快充，性价比标杆（¥2999起）。S20 Ultra 主打大屏续航：6.8英寸120Hz屏，6000mAh超大电池，1亿像素主摄（¥3999起）。重度用户/长续航需求选 Ultra。", "product", "S20,Ultra,对比,续航,选择", 8),
+    ("oPhone Fold 2 折叠屏耐用吗？", "oPhone Fold 2 采用第三代UTG超薄玻璃+水滴铰链，铰链寿命40万次（折合每天100次可用10年），通过SGS折叠认证。8英寸内屏+6.5英寸外屏，329g轻量化设计。日常使用折痕几乎不可见。", "product", "Fold,折叠,铰链,折痕,耐用", 9),
+    ("oPhone Flip 2 有什么颜色和配置？", "oPhone Flip 2 是竖折时尚旗舰：6.8英寸折叠内屏+3.4英寸外屏，5000万主摄+超广角，4200mAh双电池，44W有线+15W无线充电。小巧便携，翻盖即用。售价4999-6999元。", "product", "Flip,折叠,颜色,配置,便携", 8),
+    ("oPhone Note 20 适合办公吗？", "oPhone Note 20 是商务大屏旗舰：7.1英寸2K屏，内置S Pen（4096级压感/蓝牙遥控/手写转文字），6500mAh超大电池，12GB+512GB。支持分屏多任务和桌面模式，是移动办公利器。售价4999-6999元。", "product", "Note,商务,办公,S Pen,手写笔", 8),
+    ("oPhone C50 性价比怎么样？", "oPhone C50 是5G普及先锋：6.6英寸FHD+ LCD，天玑7200处理器，5000万双摄，5000mAh+33W快充。千元价位（¥1499起），适合老人/学生/备用机。C50 Pro 升级AMOLED屏+1亿像素+67W快充，贵约300元。", "product", "C50,性价比,千元,5G,入门", 8),
+    ("oPhone GT Neo 打游戏怎么样？", "oPhone GT Neo 是专业电竞手机：6.74英寸144Hz直屏，天玑9300处理器，120W超级闪充，12000mm² VC散热。王者荣耀/和平精英满帧运行不降频。售价2999-4499元。", "product", "GT,电竞,游戏,散热,性能,Neo", 9),
 
-    # === 平板 (product) ===
-    ("oPhone Pad 系列支持手写笔吗？", "oPhone Pad Pro 12.9、Pad Air 10.9、Pad 11 Pro、Pad 12 Artist 均支持 oPencil 2 手写笔（4096级压感+磁吸充电）。入门款 Pad SE 2 支持 oPencil 1 代。", "product", "平板,手写笔,Pad,oPencil", 9),
-    ("oPhone Pad 可以用来代替笔记本吗？", "oPhone Pad 13 和 Pad 14 Max 搭配键盘盖+触控板套装，配合桌面模式，可以完成80%的日常办公任务。但专业软件（如PS、CAD）建议选择 Book 系列笔记本。", "product", "办公,替换笔记本,键盘", 7),
-    ("oPhone Pad 屏幕对眼睛好吗？", "oPhone Pad 全系屏幕通过莱茵TÜV低蓝光认证和DC调光。Pad SE 2 和 Pad 9 Lite 采用类纸护眼屏技术，适合长时间阅读。", "product", "护眼,屏幕,蓝光,视力", 8),
-    ("oPhone Pad 支持外接显示器吗？", "oPhone Pad Pro、Pad 11 Pro、Pad 14 Max 通过雷电4/USB-C 支持外接4K显示器，可扩展桌面模式。入门款 Pad SE 仅支持屏幕镜像。", "product", "外接显示器,扩展,雷电", 6),
-    ("oPhone Pad Flex 折叠后容易坏吗？", "oPhone Pad Flex 折叠机构经过10万次折叠测试，日常使用5年无压力。随机附赠保护套，建议持续使用。", "product", "折叠,Flex,耐用", 7),
-    ("oPhone Pad Gaming 玩原神怎么样？", "oPhone Pad Gaming 搭载骁龙8 Elite+12英寸144Hz屏+12000mAh电池。原神最高画质60帧稳定运行6小时以上。", "product", "游戏,原神,性能,Gaming", 7),
+    # ============================================================
+    # === 平板产品全系列 (12款) ===
+    # ============================================================
+    ("oPhone 有哪些平板？", "oPhone Pad产品线共12款：旗舰系列——Pad 14 Max（桌面创作）、Pad 12 Artist（画师）、Pad 11 Pro（专业创作）；主流系列——Pad 13（桌面替代）、Pad 11（均衡影音）、Pad Flex（折叠创新）；便携系列——Pad 8.4（口袋平板）、Pad 9 Lite（极致轻薄）；特色系列——Pad Gaming（电竞）、Pad 10 Go（户外耐用）、Pad SE 2（入门学习）、Pad 10E（超值影音）。价格999元到8999元。", "product", "平板,Pad,全部,型号,产品线", 10),
+    ("oPhone Pad 11 Pro 适合画画吗？", "oPhone Pad 11 Pro 是专业创作平板：11英寸OLED屏，oCore M2芯片，4096级压感 oPencil 2 手写笔（磁吸充电），雷电4接口。配合 Procreate/画世界等APP，低延迟书写体验。适合插画师和设计师。", "product", "Pad,Pro,画画,手写笔,创作", 8),
+    ("oPhone Pad 12 Artist 有什么特别？", "oPhone Pad 12 Artist 是画师专属平板：12.4英寸4K Mini-LED屏，P3广色域△E<1，低延迟触控笔，预装专业绘图软件。色彩精准度对标专业数位屏。售价5999元起。", "product", "Artist,画师,绘画,Mini-LED,色域", 8),
+    ("oPhone Pad 13 能替代笔记本吗？", "oPhone Pad 13 定位桌面级平板：13.3英寸3K LCD屏，搭配键盘盖+触控板套装，12GB+512GB。配合桌面模式可完成80%日常办公任务。适合学生记笔记+轻度办公。售价3499元起。", "product", "Pad,笔记本,替代,桌面,学生", 7),
+    ("oPhone Pad 14 Max 有多强？", "oPhone Pad 14 Max 是桌面创作中心：14.6英寸3K 120Hz触控屏，oCore M3 Pro芯片，16GB+1TB。可外接双显示器。适合视频剪辑、3D建模等专业创作。售价7999元起。", "product", "Pad,Max,创作,专业,性能", 8),
+    ("oPhone Pad Flex 值得买吗？", "oPhone Pad Flex 是柔性折叠平板：折叠后7英寸手机尺寸（便携），展开12英寸OLED面板（大屏）。10万次折叠寿命。适合既想要小平板便携又想要大屏体验的用户。售价4999元起。", "product", "Flex,折叠,便携,大屏", 7),
+    ("oPhone Pad Gaming 游戏性能如何？", "oPhone Pad Gaming 是专业游戏平板：12英寸144Hz LCD，骁龙8 Elite处理器，12000mAh+100W快充，双X轴线性马达。原神/崩坏星穹铁道满帧运行6小时+。售价4499元起。", "product", "Gaming,游戏,电竞,性能,原神", 8),
+    ("oPhone Pad SE 2 适合学生用吗？", "oPhone Pad SE 2 是入门学习平板：10.5英寸护眼屏（类纸模式），A14芯片，学生模式+家长控制，支持 oPencil 1 代。适合网课、笔记、阅读。售价1499元起。", "product", "SE,学生,学习,护眼,入门", 8),
+    ("oPhone Pad 8.4 和 9 Lite 怎么选？", "Pad 8.4：8.4英寸FHD+便携口袋平板，340g。Pad 9 Lite：9英寸FHD+，295g/6.2mm极致轻薄。两者都适合随身携带阅读。8.4更小巧，9 Lite更轻薄。都定价999-1499元。", "product", "Pad,便携,对比,轻薄,选择", 7),
+    ("oPhone Pad 10 Go 防水吗？", "oPhone Pad 10 Go 是户外耐用平板：10.1英寸阳光屏（强光下清晰可见），IP68防水防尘，10000mAh超大电池。可承受1.5米跌落。适合户外工作者、工地、野外使用。售价2499元起。", "product", "Go,户外,防水,耐用,三防", 7),
+    ("oPhone Pad 10E 性价比高吗？", "oPhone Pad 10E 是超值影音板：10.4英寸2K屏，6000mAh电池。千元价位（¥999起），适合学生网课+追剧。是同价位屏幕最好的影音平板之一。", "product", "10E,性价比,影音,入门,学生", 8),
 
-    # === 手表 (product) ===
-    ("oPhone Watch 3 Pro 的 ECG 功能靠谱吗？", "oPhone Watch 3 Pro ECG心电功能通过国家药监局NMPA认证，30秒快速检测房颤等心律失常。建议定期测量，非医疗诊断。", "product", "ECG,心电,健康,Watch", 9),
-    ("oPhone Watch 如何开启 eSIM？", "支持eSIM的型号（Watch 3 Pro、Watch 3 Max、Watch Elite）：在oPhone健康APP中→设备→eSIM管理→选择运营商开通。目前支持移动/联通/电信一号双终端。", "product", "eSIM,开通,运营商", 8),
-    ("oPhone Watch 电池能用多久？", "Watch 3 Pro：7天。Watch 3：5天。Watch Sport：20天。Watch Lite：30天。Watch Kids：3天。续航因使用习惯和功能开启情况而异。", "product", "续航,电池,Watch", 9),
-    ("oPhone Watch Diver 能潜水多深？", "oPhone Watch Diver 防水等级200米(20ATM)，通过ISO 6425潜水表认证。支持水肺潜水模式（深度+免减压时间+安全停留）。", "product", "潜水,防水,Diver", 7),
-    ("oPhone Watch Kids 怎么设置电子围栏？", "在oPhone健康APP中→设备→儿童手表→安全区域→画圈设置围栏范围。孩子离开围栏自动推送警报。支持设置3个围栏区域。", "product", "儿童,安全,围栏,Kids", 8),
-    ("oPhone Watch 能测血压吗？", "oPhone Watch Health 支持腕式血压测量（示波法），通过NMPA认证。测量时需保持静止，建议校准时使用上臂式血压计对比。", "product", "血压,Health,健康", 8),
+    # ============================================================
+    # === 手表产品全系列 (14款) ===
+    # ============================================================
+    ("oPhone 手表有哪些型号？", "oPhone Watch产品线共14款：智能系列——Watch 3 SE（入门）、Watch 3 Lite（轻智能）、Watch 3 Max（户外旗舰）；运动系列——Watch Sport（全能运动）、Watch Runner（跑步教练）；商务系列——Watch Classic（经典商务）、Watch Elite（机械融合）、Watch EDC（日常通勤）；健康系列——Watch Health（健康监测）；专业系列——Watch Diver（潜水）、Watch Golf（高尔夫）；儿童系列——Watch Kids（儿童安全）；手环系列——Watch Band（智能手环）、Watch Band Pro（专业手环）。价格199元到5999元。", "product", "手表,Watch,型号,全部,产品线", 10),
+    ("oPhone Watch 3 Max 适合户外吗？", "oPhone Watch 3 Max 是户外旗舰：1.92英寸蓝宝石屏，钛合金表壳，双频GPS（精准定位峡谷/高楼），100米防水，-30°C~50°C工作温度。探险家装备。售价3999元起。", "product", "Watch,Max,户外,钛合金,GPS,防水", 9),
+    ("oPhone Watch Sport 有哪些运动模式？", "oPhone Watch Sport 支持100+运动模式：跑步、骑行、游泳、登山、滑雪、瑜伽等。内置GPS，自动运动识别，20天续航。专业运动数据：VO2Max、训练负荷、恢复建议。售价1999元起。", "product", "Watch,Sport,运动,跑步,游泳,骑行", 8),
+    ("oPhone Watch Health 能测什么？", "oPhone Watch Health 是全面健康监测手表：支持ECG心电（NMPA认证）、腕式血压测量（NMPA认证）、血氧、体温、HRV心率变异性。还具备跌倒检测+紧急SOS功能，特别适合老年人。售价2499元起。", "product", "Health,健康,血压,ECG,心电,老人", 9),
+    ("oPhone Watch Diver 潜水功能强吗？", "oPhone Watch Diver 通过ISO 6425潜水表认证：200米防水，潜水电脑（深度+免减压时间+安全停留），指南针，深度计。支持水肺潜水和自由潜水模式。售价4499元起。", "product", "Diver,潜水,防水,潜水电脑", 8),
+    ("oPhone Watch Golf 有什么功能？", "oPhone Watch Golf 是高尔夫专用手表：预装全球40,000+球场地图，挥杆分析（速度/角度/节奏），坡度补偿，果岭指南针。自动计分+数据统计。售价3299元起。", "product", "Golf,高尔夫,球场,挥杆,果岭", 7),
+    ("oPhone Watch Elite 怎么样？", "oPhone Watch Elite 是机械智能融合手表：1.5英寸圆形AMOLED，瑞士精工机芯，钛合金表壳+陶瓷表圈。既有机械表质感，又有智能功能（通知/健康/NFC）。商务精英之选。售价4999元起。", "product", "Elite,机械,商务,钛合金,陶瓷", 8),
+    ("oPhone Watch Kids 怎么用？", "oPhone Watch Kids 是儿童安全手表：GPS+北斗+WiFi三重定位，电子围栏（出入区域自动报警），视频通话，上课禁用模式。家长通过oPhone健康APP远程管理。售价699元起。", "product", "Kids,儿童,定位,安全,围栏", 9),
+    ("oPhone Watch Runner 适合马拉松吗？", "oPhone Watch Runner 是跑步教练手表：1.4英寸半透屏（强光下清晰），进阶跑步动态（步频/步幅/垂直振幅/触地时间），训练负荷分析+恢复时间建议。GPS续航30小时。马拉松训练必备。售价2499元起。", "product", "Runner,跑步,马拉松,训练,动态", 8),
+    ("oPhone Watch Band 和 Band Pro 怎么选？", "Watch Band：1.1英寸OLED，轻薄无感，心率/血氧/睡眠监测，14天续航（¥299）。Band Pro：1.47英寸AMOLED，独立GPS，血氧+体温监测，20天续航（¥499）。跑步爱好者选Pro。", "product", "Band,手环,对比,选择", 8),
+    ("oPhone Watch EDC 支持NFC吗？", "oPhone Watch EDC 支持NFC门禁卡模拟+全国300+城市公交卡。1.7英寸AMOLED方形屏，简约设计，消息提醒+来电拒接。低调实用，日常通勤首选。售价1499元起。", "product", "EDC,NFC,通勤,门禁,公交", 7),
+    ("oPhone Watch Classic 续航多久？", "oPhone Watch Classic 经典商务款：圆形1.4英寸AMOLED常亮屏，真皮表带+不锈钢表壳。日常使用约4天续航，省电模式可延长至10天。支持磁吸充电，1小时充至80%。售价2999元起。", "product", "Classic,商务,续航,经典", 7),
 
-    # === 耳机 (product) ===
-    ("oPhone Buds 3 Pro 和 Buds 2 Pro 有什么区别？", "Buds 3 Pro 升级同轴双单元、LDAC无损传输、3麦克风AI通话降噪、Qi反向充电。降噪深度从35dB提升至45dB。音质和通话质量全面提升。", "product", "Buds,对比,降噪,升级", 8),
-    ("oPhone Headphones Pro 适合录音室用吗？", "oPhone Headphones Studio 专为录音室设计（50mm平面磁驱动+开放式设计）。Headphones Pro 更适合日常聆听和通勤使用（主动降噪+封闭式设计）。", "product", "录音室,监听,Headphones", 7),
-    ("oPhone Buds Sleep 睡眠耳机怎么用？", "oPhone Buds Sleep 配合oPhone健康APP→睡眠→白噪音库（雨声/风声/心跳声等38种）。设定定时关闭（30/60/90分钟）。单次续航8小时。", "product", "睡眠,白噪音,Sleep", 7),
-    ("oPhone Buds Gaming 延迟真的低吗？", "oPhone Buds Gaming 2.4G模式下行延迟45ms，蓝牙5.3 LE Audio模式下80ms。吃鸡/原神音画同步。配合GT Neo手机会自动启动低延迟模式。", "product", "游戏,延迟,电竞,Gaming", 7),
-    ("oPhone 耳机防水吗？", "Buds 3/Buds 3 Pro/Buds Fit 支持IP57防水防汗（可短时间浸水）。Buds Gaming IPX4防溅。Buds Sleep IPX2防滴。头戴式不防水。", "product", "防水,运动,游泳", 8),
-    ("oPhone Buds 支持无线充电吗？", "Buds 3 Pro、Buds Business 充电仓支持Qi无线充电+Buds 3 Pro支持手机反向充电。其他型号仅USB-C有线充电。", "product", "无线充电,电池", 6),
+    # ============================================================
+    # === 耳机产品全系列 (13款) ===
+    # ============================================================
+    ("oPhone 耳机有哪些型号？", "oPhone耳机产品线共13款：TWS真无线——Buds 3（入门降噪）、Buds 3 Pro（旗舰降噪）、Buds Lite 2（超轻半入耳）、Buds Fit（运动）、Buds Color（潮流）、Buds Sleep（睡眠）、Buds Business（商务通话）、Buds Gaming（电竞低延迟）；头戴式——Headphones Pro（旗舰）、Headphones ANC（通勤降噪）、Headphones Studio（录音室监听）；其他——Neckband Pro（颈挂式运动）、Buds Kids 2（儿童安全）。价格99元到2999元。", "product", "耳机,Buds,Headphones,型号,全部,产品线", 10),
+    ("oPhone Buds 3 Pro 降噪效果如何？", "oPhone Buds 3 Pro 是旗舰降噪耳机：同轴双单元（10mm动圈+动铁），自适应降噪3.0（深度45dB），LDAC无损传输，3麦克风AI通话降噪。支持空间音频头部追踪、Qi无线充电+手机反向充电。续航10h+40h。售价1299元。", "product", "Buds,Pro,降噪,LDAC,无损,音质", 9),
+    ("oPhone Buds 3 和 Buds 3 Pro 有什么区别？", "Buds 3：自适应降噪3.0（深度38dB），IP57防水，续航10h+40h（¥899）。Buds 3 Pro：同轴双单元，降噪深度45dB，LDAC无损，空间音频头部追踪，Qi无线充电（¥1299）。Pro音质和降噪全面提升。", "product", "Buds,对比,降噪,区别,选择", 9),
+    ("oPhone Buds Lite 2 戴着舒服吗？", "oPhone Buds Lite 2 是超轻半入耳设计：单耳仅3.8g，贴合耳廓无压迫感。半入耳不堵塞耳道，适合长时间佩戴（办公/学习/睡前）。25h总续航，通话降噪。售价499元。", "product", "Buds,Lite,舒适,半入耳,轻便", 8),
+    ("oPhone Buds Fit 适合跑步吗？", "oPhone Buds Fit 是专业运动耳机：耳翼式固定设计（剧烈运动不掉），IPX6防水防汗，低音增强模式（跑步更有节奏感）。单次8h续航，适合跑步/健身/骑行。售价599元。", "product", "Fit,运动,跑步,防水,健身", 8),
+    ("oPhone Headphones Pro 音质好吗？", "oPhone Headphones Pro 是旗舰头戴式耳机：45mm镀铍振膜，LDAC无损传输+主动降噪，60h超长续航。蛋白皮耳罩柔软舒适，折叠收纳。适合沉浸式音乐聆听。售价1999元。", "product", "Headphones,Pro,头戴,音质,降噪", 8),
+    ("oPhone Headphones Studio 适合专业用吗？", "oPhone Headphones Studio 是录音室监听耳机：50mm平面磁驱动单元，频率响应5Hz-40kHz，开放式声学设计。中性无音染，适合音频混音/母带制作。售价2999元。", "product", "Headphones,Studio,录音室,监听,平面磁", 8),
+    ("oPhone Headphones ANC 通勤用怎么样？", "oPhone Headphones ANC 是通勤降噪耳机：40mm动圈，混合降噪35dB，折叠便携设计，55h续航。轻量化（230g），适合地铁/公交/飞机上使用。售价899元。", "product", "Headphones,ANC,通勤,降噪,便携", 8),
+    ("oPhone Buds Sleep 睡眠耳机好用吗？", "oPhone Buds Sleep 是助眠专用耳机：超迷你设计（单耳2.3g），侧睡不硌耳。白噪音库38种（雨声/风声/心跳声等），定时关闭。8h单次续航，配合oPhone健康APP使用。售价399元。", "product", "Sleep,睡眠,白噪音,助眠", 8),
+    ("oPhone Buds Business 通话效果好吗？", "oPhone Buds Business 是商务通话耳机：4麦克风AI降噪（过滤环境噪音），多点连接（同时连手机+电脑），USB-C无线适配器（即插即用）。会议/电话通话清晰。售价999元。", "product", "Business,通话,会议,降噪,商务", 8),
+    ("oPhone Buds Gaming 打游戏延迟低吗？", "oPhone Buds Gaming 是电竞耳机：蓝牙5.3+2.4G双模，2.4G模式延迟仅45ms，蓝牙LE Audio模式80ms。RGB灯效充电仓。FPS游戏听声辨位精准。售价799元。", "product", "Gaming,游戏,低延迟,电竞,RGB", 8),
+    ("oPhone Buds Color 有哪些颜色？", "oPhone Buds Color 是潮流色彩系列：6种撞色设计（霓虹绿/珊瑚粉/电光紫/冰湖蓝/柠檬黄/曜石黑），半透明充电仓。音质均衡，24h续航。年轻人的时尚单品。售价299元。", "product", "Color,颜色,潮流,时尚,色彩", 7),
+    ("oPhone Neckband Pro 适合运动吗？", "oPhone Neckband Pro 是颈挂式运动耳机：磁吸开关（吸合暂停/分开播放），IPX5防水，12mm动圈，18h续航。颈挂式设计跑步不掉落，适合不喜欢真无线耳机的用户。售价399元。", "product", "Neckband,运动,颈挂,磁吸", 7),
+    ("oPhone Buds Kids 2 对儿童安全吗？", "oPhone Buds Kids 2 是儿童专用耳机：85dB安全音量限制（保护听力），软硅胶头梁，无线蓝牙连接。适合网课学习和娱乐，家长放心。售价299元。", "product", "Kids,儿童,安全,音量,网课", 8),
 
-    # === 电脑 (product) ===
-    ("oPhone Book Pro 适合剪视频吗？", "oPhone Book Pro 系列搭载 oCore M3 Pro芯片（12核CPU+18核GPU+16核神经引擎），8K ProRes流畅剪辑。Final Cut Pro导出速度快于同级Win本2倍。", "product", "视频剪辑,Pro,性能", 8),
-    ("oPhone Book 能玩3A大作吗？", "oPhone Book Gaming 16（RTX5080）和Gaming 14（RTX5070）可流畅运行3A大作。非游戏本型号可玩轻度游戏（LOL/原神），不适合3A。", "product", "游戏,3A,Gaming,性能", 8),
-    ("oPhone Book 电池能用多久？", "Book Pro 16：18小时。Book Air 13：12小时。Book Gaming 16：6小时（游戏状态2小时）。Book SE 14：10小时。续航测试基于50%亮度网页浏览。", "product", "续航,电池,Book", 8),
-    ("oPhone Book 可以外接几个显示器？", "Book Pro/Studio/Ultra 支持外接2台6K+1台4K显示器。Book Air/SE 支持外接1台4K。Desktop Studio 支持外接4台6K显示器。", "product", "外接,显示器,扩展", 7),
-    ("oPhone Desktop Mini 有多小？", "oPhone Desktop Mini 尺寸12.7×12.7×5cm，重量680g。手掌大小，可放入随身包中。双雷电5+双USB-A+HDMI+SD卡槽，接口齐全。", "product", "Mini,尺寸,桌面", 6),
-    ("oPhone Book 和 oPhone Pad 怎么选？", "需要专业软件（编程/设计/视频/R Studio）选Book。日常办公/网课/追剧/轻笔记选Pad。Book有更强性能+完整桌面OS，Pad更便携+触屏操作。", "product", "选择,对比,Book,Pad", 9),
+    # ============================================================
+    # === 电脑产品全系列 (16款) ===
+    # ============================================================
+    ("oPhone 电脑有哪些型号？", "oPhone电脑产品线共16款：笔记本——Book Pro 16/14（旗舰创作）、Book Air 15/13（轻薄便携）、Book Studio 16（工作站）、Book SE 14（入门学习）、Book Gaming 16/14（电竞）、Book Flip 14（翻转触控）、Book Ultra 17（移动工作站）、Book Dual（双屏）、Book Go 12（小巧随身）；台式机——Desktop Studio（创作塔式）、Desktop Mini（迷你主机）、Desktop AIO 27/24（一体机）。价格2999元到29999元。", "product", "电脑,Book,Desktop,型号,全部,产品线", 10),
+    ("oPhone Book Pro 16 适合程序员吗？", "oPhone Book Pro 16 是旗舰创作本：16英寸3K Mini-LED屏（P3广色域），oCore M3 Pro芯片（12核CPU+18核GPU），32GB+1TB。编译/Rendering/虚拟化性能强劲。18h续航全天编程无压力。售价10999元起。", "product", "Book,Pro,编程,性能,程序员", 9),
+    ("oPhone Book Air 13 有多轻？", "oPhone Book Air 13 仅重980g，厚11.5mm。13.3英寸2K屏，oCore i5处理器，12h续航。极致便携，适合移动办公/出差/上课。售价4999元起。", "product", "Book,Air,轻薄,便携,重量", 8),
+    ("oPhone Book Studio 16 适合做3D吗？", "oPhone Book Studio 16 是创作者工作站：16英寸4K OLED触控屏，独显RTX 5070（8GB GDDR7），64GB+2TB。C4D/Blender/Maya流畅运行。视频剪辑+3D渲染专业之选。售价15999元起。", "product", "Book,Studio,3D,渲染,视频,工作站", 9),
+    ("oPhone Book Gaming 16 性能怎么样？", "oPhone Book Gaming 16 是旗舰电竞本：16英寸240Hz 2.5K屏，RTX 5080独显（16GB GDDR7），32GB+1TB。赛博朋克2077/原神/CS2最高画质流畅运行。金属机身+RGB键盘。售价14999元起。", "product", "Book,Gaming,电竞,游戏,性能,RTX5080", 9),
+    ("oPhone Book Gaming 14 和 Gaming 16 怎么选？", "Gaming 14：14英寸165Hz 2K屏，RTX 5070，16GB+512GB，1.7kg（¥9999）。Gaming 16：16英寸240Hz 2.5K屏，RTX 5080，32GB+1TB（¥14999）。追求便携选14，追求极致性能选16。", "product", "Gaming,对比,14,16,选择", 8),
+    ("oPhone Book SE 14 值得买吗？", "oPhone Book SE 14 是入门学习本：14英寸FHD IPS屏，oCore i3处理器，8GB+256GB。适合网课、文档办公、视频播放。学生党入门首选。售价2999元起。", "product", "Book,SE,入门,学生,学习", 8),
+    ("oPhone Book Flip 14 翻转好用吗？", "oPhone Book Flip 14 是翻转触控本：14英寸2K触控屏，360°翻转（笔记本/帐篷/站立/平板4种模式）。支持手写笔，设计师+学生笔记神器。售价6999元起。", "product", "Book,Flip,翻转,触控,手写", 8),
+    ("oPhone Book Ultra 17 有多强？", "oPhone Book Ultra 17 是移动工作站：17英寸4K Mini-LED，oCore M3 Ultra芯片，128GB+4TB。可外接3台6K显示器。面向AI训练、科研计算、影视后期。售价29999元起。", "product", "Book,Ultra,工作站,AI,科研,专业", 8),
+    ("oPhone Book Dual 双屏怎么用？", "oPhone Book Dual 是全球首款双屏笔记本：双14英寸2K屏，折叠展开=19英寸工作区。上下分屏（上查资料/下写文档）或左右扩展。多任务处理专家。售价11999元起。", "product", "Book,Dual,双屏,多任务,创新", 8),
+    ("oPhone Book Go 12 能做什么？", "oPhone Book Go 12 是小巧随身本：12.4英寸FHD+，ARM处理器，850g，20h续航，Always Connected（4G LTE）。适合移动办公/出差/记者写稿。售价3999元起。", "product", "Book,Go,便携,续航,轻量", 8),
+    ("oPhone Desktop Studio 配置怎么样？", "oPhone Desktop Studio 是顶级创作台式机：oCore M3 Ultra芯片，RTX 5090独显（32GB GDDR7），128GB+4TB。塔式设计，强大散热。8K视频实时渲染/3A游戏直播。售价29999元起。", "product", "Desktop,Studio,台式机,创作,性能,5090", 9),
+    ("oPhone Desktop Mini 有多小？", "oPhone Desktop Mini 是迷你主机：12.7×12.7×5cm，仅重680g（手掌大小）。oCore M3芯片，16GB+512GB。双雷电5+双USB-A+HDMI+SD卡槽。桌面整洁方案。售价4999元起。", "product", "Desktop,Mini,迷你,小巧,桌面", 8),
+    ("oPhone Desktop AIO 27 和 24 怎么选？", "Desktop AIO 27：27英寸5K屏，oCore M3 Pro芯片，32GB+1TB，家庭+办公旗舰（¥12999）。Desktop AIO 24：24英寸4K屏，oCore i7，16GB+512GB，教育+办公友好（¥6999）。", "product", "Desktop,AIO,一体机,对比,选择", 8),
+    ("oPhone Book 和 oPhone Pad 怎么选？", "需要专业软件（编程/设计/视频/R Studio）选Book系列。日常办公/网课/追剧/轻笔记选Pad系列。Book有更强性能+完整桌面OS，Pad更便携+触屏操作。", "product", "选择,对比,Book,Pad,笔记本,平板", 10),
 
-    # === 订单与售后 ===
+    # ============================================================
+    # === 产品对比和选购指南 ===
+    # ============================================================
+    ("oPhone 最贵的手机是哪款？", "oPhone最贵的手机是X30 Ultra+ 16GB+1TB顶配版，售价8999元。其次是Fold 2顶配版（7999元）和Note 20顶配版（6999元）。折叠屏和影像旗舰是价格最高的品类。", "product", "最贵,价格,旗舰,X30,Fold", 7),
+    ("oPhone 有哪些折叠屏产品？", "oPhone折叠屏产品共3款：oPhone Fold 2（大折叠，8英寸内屏+6.5英寸外屏，¥6999起）、oPhone Flip 2（竖折叠，6.8英寸折叠屏，¥4999起）、oPhone Pad Flex（折叠平板，7英寸↔12英寸，¥4999起）。", "product", "折叠屏,折叠,Fold,Flip,Flex", 9),
+    ("oPhone 学生买什么合适？", "学生推荐：手机——C50/C50 Pro（千元价位）或 X30 Lite（轻薄拍照）；平板——Pad SE 2 或 Pad 10E（网课学习）；电脑——Book SE 14 或 Book Air 13（轻薄够用）；手表——Watch 3 SE 或 Watch Band；耳机——Buds Lite 2 或 Buds Color。教育优惠最高可省800元。", "product", "学生,推荐,选购,教育,预算", 10),
+    ("oPhone 性价比最高的手机是哪款？", "oPhone性价比最高的是 C50（¥1499起）和 C50 Pro（¥1799起）。5G全网通、大电池长续航、千元价位配置均衡。其次是 S20（¥2999起），入门旗舰体验。", "product", "性价比,推荐,便宜,C50,S20", 9),
+    ("oPhone 什么产品适合送长辈？", "送长辈推荐：手机——Note 20（大屏大字体，S Pen方便手写）；手表——Watch Health（健康监测：ECG+血压+跌倒检测）；平板——Pad 11（大屏追剧视频通话）；耳机——Buds Lite 2（轻便舒适）。", "product", "长辈,送礼,老人,推荐", 8),
+
+    # ============================================================
+    # === 订单与售后 (保持不变) ===
+    # ============================================================
     ("oPhone以旧换新怎么操作？", "在oPhone商城APP→我的→以旧换新→输入旧机型号→在线估价→顺丰上门取件→验机后差价购买新机。旧机最高可抵5000元。", "aftersale", "以旧换新,回收,估价", 8),
     ("oPhone的换电池服务多少钱？", "手机换电池：199-399元（视型号）。平板换电池：299-599元。手表换电池：199元。耳机电池不支持更换。维修中心1小时快修。", "aftersale", "电池,更换,维修,价格", 9),
     ("oPhone的意外损坏保修吗？", "标准保修不覆盖意外损坏（碎屏/进水）。建议购买oPhone Care+服务（X系列¥699/年），提供每年2次意外损坏低价维修（屏幕¥188/其他¥628）。", "aftersale", "碎屏,进水,意外,Care+,保修", 9),

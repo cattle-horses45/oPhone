@@ -92,6 +92,15 @@ export default function HumanChatPage() {
     seenRef.current = new Set();
   };
 
+  const handleTransferBack = () => {
+    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+      wsRef.current.send(JSON.stringify({ event: 'transfer_back_to_ai' }));
+    }
+    setActiveId(null);
+    setMessages([]);
+    seenRef.current = new Set();
+  };
+
   return (
     <div>
       <h2 className="text-lg font-semibold tracking-wide mb-6" style={{ color: C.textPrimary }}>人工客服</h2>
@@ -123,9 +132,14 @@ export default function HumanChatPage() {
             <>
               <div className="px-4 py-3 flex items-center justify-between" style={{ borderBottom: `1px solid ${C.cardBorder}` }}>
                 <span className="text-sm font-medium" style={{ color: C.textPrimary }}>会话 #{activeId}</span>
-                <button onClick={handleClose} className="text-xs transition-colors" style={{ color: C.textMuted }}
-                  onMouseEnter={e => e.currentTarget.style.color = '#e06070'}
-                  onMouseLeave={e => e.currentTarget.style.color = C.textMuted}>结束会话</button>
+                <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                  <button onClick={handleTransferBack} className="text-xs transition-colors" style={{ color: C.accent }}
+                    onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
+                    onMouseLeave={e => e.currentTarget.style.opacity = '1'}>转回AI</button>
+                  <button onClick={handleClose} className="text-xs transition-colors" style={{ color: C.textMuted }}
+                    onMouseEnter={e => e.currentTarget.style.color = '#e06070'}
+                    onMouseLeave={e => e.currentTarget.style.color = C.textMuted}>结束会话</button>
+                </div>
               </div>
               <div className="flex-1 overflow-auto p-4 space-y-3">
                 {messages.map((m, idx) => {

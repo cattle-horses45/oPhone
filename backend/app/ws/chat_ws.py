@@ -48,6 +48,9 @@ async def handle_chat_ws(
                 elif event == "transfer_to_human":
                     await handle_transfer_request(msg_data, session, user_id, db)
 
+                elif event == "transfer_back_to_ai":
+                    await handle_transfer_back(msg_data, session, user_id, db)
+
                 elif event == "close_session":
                     await handle_close_session(session, user_id, db)
                     break
@@ -324,6 +327,71 @@ async def handle_transfer_request(
                     "id": sys_msg.id,
                     "sender_type": "ai",
                     "content": "正在为您转接人工客服，请稍候...",
+                },
+            },
+            ensure_ascii=False,
+        ))
+
+
+async def handle_transfer_back(
+    msg_data: dict,
+    session: ChatSession,
+    user_id: int,
+    db: AsyncSession,
+):
+    """处理转回AI客服请求"""
+    ws = manager.user_connections.get(user_id)
+
+    # 切回 AI 模式
+    session.session_type = "ai"
+    session.admin_id = None
+    session.transfer_reason = None
+    await db.flush()
+    await db.commit()
+
+    # 保存系统消息
+    sys_msg = ChatMessage(
+        session_id=session.id,
+        sender_type="ai",
+        content="已切回AI客服模式，我是小O，继续为您服务！请问还有什么可以帮助您的？",
+        extra_data={"event": "transfer_back"},
+    )
+    db.add(sys_msg)
+    await db.flush()
+    await db.commit()
+
+    # 通知管理员会话已转回AI
+    await manager.broadcast_to_admins({
+        "event": "transfer_back_notify",
+        "data": {
+            "session_id": session.id,
+            "user_id": user_id,
+            "message": f"用户{user_id}的会话已转回AI客服",
+        },
+    })
+
+    # 从队列中移除
+    manager.remove_from_queue(session.id)
+
+    # 通知用户
+    if ws:
+        await ws.send_text(json.dumps(
+            {
+                "event": "transfer_back",
+                "data": {
+                    "message": "已切回AI客服模式",
+                    "session_id": session.id,
+                },
+            },
+            ensure_ascii=False,
+        ))
+        await ws.send_text(json.dumps(
+            {
+                "event": "new_message",
+                "data": {
+                    "id": sys_msg.id,
+                    "sender_type": "ai",
+                    "content": "已切回AI客服模式，我是小O，继续为您服务！请问还有什么可以帮助您的？",
                 },
             },
             ensure_ascii=False,

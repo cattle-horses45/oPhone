@@ -161,6 +161,9 @@ export default function ChatWidget() {
           case 'transfer_notify':
             setTransferring(true); setLoading(false);
             break;
+          case 'transfer_back':
+            setTransferring(false); setLoading(false);
+            break;
           case 'error':
             clearLoadingTimer(); setAiTyping(false); setLoading(false);
             setMessages(prev => [...prev, { sender_type: 'ai', content: data.data?.message || '系统错误，请重试', id: Date.now() }]);
@@ -224,6 +227,13 @@ export default function ChatWidget() {
     if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
       wsRef.current.send(JSON.stringify({ event: 'transfer_to_human', data: { reason: '用户请求转人工' } }));
       setTransferring(true);
+    }
+  };
+
+  const handleTransferBack = () => {
+    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+      wsRef.current.send(JSON.stringify({ event: 'transfer_back_to_ai', data: {} }));
+      setTransferring(false);
     }
   };
 
@@ -332,6 +342,21 @@ export default function ChatWidget() {
                   onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(61,106,148,0.25)'; }}
                 >
                   <IconHeadset /> 转人工
+                </button>
+              )}
+              {isAuthenticated && transferring && (
+                <button onClick={handleTransferBack} aria-label="转回AI客服" style={{
+                  fontFamily: "'Inter','Noto Sans SC',system-ui,sans-serif",
+                  fontSize: 11, fontWeight: 500, padding: '4px 10px',
+                  border: `1px solid rgba(61,106,148,0.25)`, borderRadius: 6,
+                  background: T.accentDim, color: T.accent, cursor: 'pointer',
+                  display: 'flex', alignItems: 'center', gap: 4,
+                  transition: 'background 0.15s ease, border-color 0.15s ease',
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(61,106,148,0.14)'; e.currentTarget.style.borderColor = T.accent; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = T.accentDim; e.currentTarget.style.borderColor = 'rgba(61,106,148,0.25)'; }}
+                >
+                  🤖 转回AI
                 </button>
               )}
               <button onClick={() => setIsOpen(false)} aria-label="关闭客服" style={{

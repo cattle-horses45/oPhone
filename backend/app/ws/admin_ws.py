@@ -133,6 +133,65 @@ async def handle_admin_chat_ws(
                         },
                     )
 
+                elif event == "transfer_back_to_ai":
+                    # 管理员主动将会话转回AI
+                    session.session_type = "ai"
+                    session.admin_id = None
+                    session.transfer_reason = None
+                    await db.flush()
+                    await db.commit()
+
+                    manager.remove_from_queue(session.id)
+
+                    sys_msg = ChatMessage(
+                        session_id=session.id,
+                        sender_type="ai",
+                        content="人工客服已将您转回AI客服模式，我是小O，继续为您服务！",
+                        extra_data={"event": "transfer_back_by_admin"},
+                    )
+                    db.add(sys_msg)
+                    await db.flush()
+                    await db.commit()
+
+                    # 通知用户
+                    await manager.send_to_user(
+                        session.user_id,
+                        {
+                            "event": "transfer_back",
+                            "data": {
+                                "message": "人工客服已将您转回AI模式",
+                                "session_id": session.id,
+                            },
+                        },
+                    )
+                    await manager.send_to_user(
+                        session.user_id,
+                        {
+                            "event": "new_message",
+                            "data": {
+                                "id": sys_msg.id,
+                                "sender_type": "ai",
+                                "content": "人工客服已将您转回AI客服模式，我是小O，继续为您服务！",
+                            },
+                        },
+                    )
+
+                    # 通知admin确认
+                    await manager.send_to_admin(admin.id, {
+                        "event": "new_message",
+                        "data": {
+                            "id": sys_msg.id,
+                            "sender_type": "ai",
+                            "content": "已将用户转回AI客服模式",
+                        },
+                    })
+
+                    # 广播队列更新
+                    await manager.broadcast_to_admins({
+                        "event": "queue_update",
+                        "data": {"queue_count": len(manager.transfer_queue), "queue_list": manager.get_queue()},
+                    })
+
                 elif event == "close_session":
                     session.status = "closed"
                     await db.flush()
