@@ -6,8 +6,11 @@ from pydantic import BaseModel, Field
 
 
 class OrderCreate(BaseModel):
-    address_id: int = Field(..., description="收货地址ID")
-    cart_item_ids: list[int] = Field(..., min_length=1, description="要结算的购物车项ID列表")
+    address_id: Optional[int] = Field(None, description="收货地址ID（已保存地址时使用）")
+    receiver_name: Optional[str] = Field(None, max_length=50, description="收货人姓名")
+    phone: Optional[str] = Field(None, max_length=20, description="手机号码")
+    detail_address: Optional[str] = Field(None, max_length=255, description="详细地址")
+    cart_item_ids: Optional[list[int]] = Field(None, min_length=1, description="要结算的购物车项ID列表")
     remark: Optional[str] = Field(None, max_length=500)
 
 

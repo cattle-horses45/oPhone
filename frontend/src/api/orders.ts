@@ -3,7 +3,10 @@ import type { Order, OrderQuery } from '../types/order';
 import type { PaginatedResponse } from '../types/product';
 
 export interface CreateOrderRequest {
-  address_id: number;
+  address_id?: number;
+  receiver_name?: string;
+  phone?: string;
+  detail_address?: string;
   cart_item_ids?: number[];
   remark?: string;
 }

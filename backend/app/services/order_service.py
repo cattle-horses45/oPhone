@@ -68,34 +68,74 @@ def _format_order(order: Order) -> dict:
 async def create_order(
     db: AsyncSession,
     user_id: int,
-    address_id: int,
-    cart_item_ids: list[int],
+    address_id: int | None = None,
+    cart_item_ids: list[int] | None = None,
+    receiver_name: str | None = None,
+    phone: str | None = None,
+    detail_address: str | None = None,
     remark: str | None = None,
 ) -> dict:
     """
     从购物车创建订单（事务）
 
     步骤:
-    1. 验证收货地址
+    1. 获取收货地址（已保存地址 或 直接传地址信息）
     2. 验证购物车项，检查库存
     3. 扣减库存
     4. 生成订单和订单项
     5. 清空已结算的购物车项
     """
-    # 1. 验证收货地址
-    addr_result = await db.execute(
-        select(Address).where(
-            and_(Address.id == address_id, Address.user_id == user_id)
+    # 1. 获取收货地址快照
+    if address_id:
+        addr_result = await db.execute(
+            select(Address).where(
+                and_(Address.id == address_id, Address.user_id == user_id)
+            )
         )
-    )
-    address = addr_result.scalar_one_or_none()
-    if not address:
+        address = addr_result.scalar_one_or_none()
+        if not address:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="收货地址不存在",
+            )
+        address_snapshot = {
+            "receiver_name": address.receiver_name,
+            "phone": address.phone,
+            "province": address.province,
+            "city": address.city,
+            "district": address.district,
+            "detail_address": address.detail_address,
+        }
+    elif receiver_name and phone and detail_address:
+        address_snapshot = {
+            "receiver_name": receiver_name,
+            "phone": phone,
+            "province": "",
+            "city": "",
+            "district": "",
+            "detail_address": detail_address,
+        }
+    else:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="收货地址不存在",
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="请提供收货地址信息",
         )
 
-    # 2. 验证购物车项
+    # 2. 如果没有传 cart_item_ids，获取用户所有购物车项
+    if not cart_item_ids:
+        all_items_result = await db.execute(
+            select(CartItem).where(CartItem.user_id == user_id)
+        )
+        all_cart_items = all_items_result.scalars().all()
+        cart_item_ids = [item.id for item in all_cart_items]
+
+    if not cart_item_ids:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="购物车为空",
+        )
+
+    # 3. 验证购物车项
     cart_items = []
     for cid in cart_item_ids:
         result = await db.execute(
@@ -175,16 +215,7 @@ async def create_order(
 
     total_amount = round(total_amount, 2)
 
-    # 4. 创建订单
-    address_snapshot = {
-        "receiver_name": address.receiver_name,
-        "phone": address.phone,
-        "province": address.province,
-        "city": address.city,
-        "district": address.district,
-        "detail_address": address.detail_address,
-    }
-
+    # 4. 创建订单（address_snapshot 已在前面设置）
     order = Order(
         order_no=_generate_order_no(),
         user_id=user_id,

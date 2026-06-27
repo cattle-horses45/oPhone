@@ -25,6 +25,9 @@ async def create_order(
         user_id=current_user.id,
         address_id=req.address_id,
         cart_item_ids=req.cart_item_ids,
+        receiver_name=req.receiver_name,
+        phone=req.phone,
+        detail_address=req.detail_address,
         remark=req.remark,
     )
 
