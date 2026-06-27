@@ -55,7 +55,9 @@ export default function CheckoutPage() {
       await fetchCart();
       setStep('success');
     } catch (err: any) {
-      alert(err.response?.data?.detail || '支付失败，请重试');
+      const detail = err.response?.data?.detail;
+      const msg = typeof detail === 'string' ? detail : (detail?.message || detail?.msg || '支付失败，请重试');
+      alert(msg);
       setStep('checkout');
     } finally {
       setSubmitting(false);
