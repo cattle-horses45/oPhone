@@ -53,7 +53,7 @@ export default function CartPage() {
   return (
     <div className="relative min-h-screen">
       <ParticleBackground />
-      <div className="page-content max-w-4xl mx-auto px-6 py-8">
+      <div className="page-content max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8" style={{ paddingBottom: 'max(40px, calc(env(safe-area-inset-bottom, 0px) + 24px))' }}>
         <h1 className="text-xl tracking-[0.2em] text-gold-glow font-semibold mb-8">购物车</h1>
 
         {items.length === 0 ? (
@@ -97,10 +97,14 @@ export default function CartPage() {
                   </Link>
                   <span className="w-24 text-center text-sm text-gray-600">¥{item.price}</span>
                   <div className="w-28 flex justify-center">
-                    <div className="flex items-center" style={{ borderRadius: 10, border: '1px solid rgba(0,0,0,0.08)' }}>
-                      <button onClick={() => handleQty(item.id, item.quantity - 1)} className="w-8 h-8 text-sm text-gray-400 hover:text-gray-600">−</button>
-                      <span className="w-10 text-center text-sm text-gray-700">{item.quantity}</span>
-                      <button onClick={() => handleQty(item.id, item.quantity + 1)} className="w-8 h-8 text-sm text-gray-400 hover:text-gray-600">+</button>
+                    <div className="flex items-center" style={{ borderRadius: 8, border: '1px solid rgba(15,23,42,0.08)' }}>
+                      <button onClick={() => handleQty(item.id, item.quantity - 1)}
+                        className="tap-active"
+                        style={{ width: 32, height: 32, border: 'none', background: 'transparent', color: '#5F6B7A', fontSize: 14, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', WebkitTapHighlightColor: 'transparent' }}>−</button>
+                      <span style={{ width: 40, textAlign: 'center', fontSize: 13, color: '#15181B', fontFamily: "'Space Mono','Courier New',monospace" }}>{item.quantity}</span>
+                      <button onClick={() => handleQty(item.id, item.quantity + 1)}
+                        className="tap-active"
+                        style={{ width: 32, height: 32, border: 'none', background: 'transparent', color: '#5F6B7A', fontSize: 14, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', WebkitTapHighlightColor: 'transparent' }}>+</button>
                     </div>
                   </div>
                   <span className="w-24 text-center text-sm text-gold-glow font-medium">¥{(item.price * item.quantity).toFixed(2)}</span>

@@ -138,28 +138,28 @@ export default function MainLayout() {
         <Outlet />
       </main>
 
-      {/* Footer */}
+      {/* Footer — with mobile safe-area bottom padding */}
       <footer className="page-content border-t" style={{ borderColor: 'rgba(15,23,42,0.06)', background: '#EEF1F5' }}>
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div className="max-w-7xl mx-auto px-6 py-10 md:py-12" style={{ paddingBottom: 'max(40px, calc(env(safe-area-inset-bottom, 0px) + 32px))' }}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
             <div>
-              <h4 className="text-gold-glow font-semibold text-lg mb-4 tracking-wider">oPhone</h4>
+              <h4 className="text-gold-glow font-semibold text-lg mb-3 tracking-wider">oPhone</h4>
               <p className="text-sm text-[#8B95A5] leading-relaxed">探索科技之美，体验极致创新。</p>
             </div>
             <div>
-              <h5 className="text-[#5F6B7A] font-medium mb-4 tracking-wider text-sm">购物指南</h5>
-              <div className="space-y-2 text-sm text-[#8B95A5]">购物流程 · 支付方式 · 配送说明</div>
+              <h5 className="text-[#5F6B7A] font-medium mb-3 tracking-wider text-sm">购物指南</h5>
+              <div className="space-y-1.5 text-sm text-[#8B95A5]">购物流程 · 支付方式 · 配送说明</div>
             </div>
             <div>
-              <h5 className="text-[#5F6B7A] font-medium mb-4 tracking-wider text-sm">售后服务</h5>
-              <div className="space-y-2 text-sm text-[#8B95A5]">退换货政策 · 保修服务 · 常见问题</div>
+              <h5 className="text-[#5F6B7A] font-medium mb-3 tracking-wider text-sm">售后服务</h5>
+              <div className="space-y-1.5 text-sm text-[#8B95A5]">退换货政策 · 保修服务 · 常见问题</div>
             </div>
             <div>
-              <h5 className="text-[#5F6B7A] font-medium mb-4 tracking-wider text-sm">联系我们</h5>
-              <div className="space-y-2 text-sm text-[#8B95A5]">400-888-8888 · support@ophone.com</div>
+              <h5 className="text-[#5F6B7A] font-medium mb-3 tracking-wider text-sm">联系我们</h5>
+              <div className="space-y-1.5 text-sm text-[#8B95A5]">400-888-8888 · support@ophone.com</div>
             </div>
           </div>
-          <div className="text-center mt-12 pt-8 border-t text-xs text-[#8B95A5]" style={{ borderColor: 'rgba(15,23,42,0.06)' }}>
+          <div className="text-center mt-10 pt-6 border-t text-xs text-[#8B95A5]" style={{ borderColor: 'rgba(15,23,42,0.06)' }}>
             © 2026 oPhone. All rights reserved.
           </div>
         </div>

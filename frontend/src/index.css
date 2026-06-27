@@ -37,8 +37,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  /* Safe area padding for mobile status bar (WebView / PWA) */
+  /* Safe area padding for mobile notches and home indicator */
   padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 #root { min-height: 100vh; display: flex; flex-direction: column; }
@@ -58,11 +59,16 @@ body {
   border: 1px solid rgba(15, 23, 42, 0.06);
   border-radius: 8px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 .glass-card:hover {
   border-color: rgba(15, 23, 42, 0.1);
   box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
   transform: translateY(-1px);
+}
+.glass-card:active {
+  transform: scale(0.985);
+  transition: transform 0.08s ease;
 }
 
 /* ===== Primary Button — accent, sparing use ===== */
@@ -75,14 +81,18 @@ body {
   border-radius: 6px;
   letter-spacing: 0.02em;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 .btn-gold:hover {
   background: #2F5579;
   transform: translateY(-1px);
 }
 .btn-gold:active {
-  transform: translateY(0);
+  transform: scale(0.97);
+  background: #2F5579;
+  transition: transform 0.08s ease, background 0.08s ease;
 }
 .btn-gold:disabled {
   opacity: 0.4; cursor: not-allowed; transform: none;
@@ -99,16 +109,58 @@ body {
   padding: 10px 28px;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   letter-spacing: 0.02em;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 .btn-outline-gold:hover {
   background: rgba(61, 106, 148, 0.06);
   border-color: #3D6A94;
 }
+.btn-outline-gold:active {
+  transform: scale(0.97);
+  background: rgba(61, 106, 148, 0.1);
+  transition: transform 0.08s ease, background 0.08s ease;
+}
 .btn-outline-gold:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px rgba(61, 106, 148, 0.25);
+}
+
+/* ===== Shopping cart button feedback ===== */
+.btn-cart-feedback {
+  position: relative;
+  overflow: hidden;
+}
+.btn-cart-feedback::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.btn-cart-feedback:active::after {
+  opacity: 1;
+  transition: opacity 0s;
+}
+
+/* ===== Tap ripple for cards and interactive surfaces ===== */
+.tap-active {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.tap-active:active {
+  transform: scale(0.98);
+}
+
+/* ===== Touch-friendly navigation highlight ===== */
+@media (hover: none) and (pointer: coarse) {
+  .btn-gold, .btn-outline-gold {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
 
 /* ===== Input Fields ===== */

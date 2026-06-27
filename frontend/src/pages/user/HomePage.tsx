@@ -59,9 +59,9 @@ export default function HomePage() {
           ================================================================ */}
       <section className="relative overflow-hidden" style={{ background: '#EEF1F5' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between" style={{ minHeight: 320 }}>
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between" style={{ minHeight: 'clamp(200px, 40vw, 320px)' }}>
             {/* Left: text + CTA */}
-            <div className="pt-14 lg:pt-0 pb-8 lg:pb-0 lg:max-w-lg">
+            <div className="pt-10 lg:pt-0 pb-6 lg:pb-0 lg:max-w-lg">
               <h1 style={{
                 fontFamily: "'Inter','Noto Sans SC',system-ui,sans-serif",
                 fontSize: 'clamp(2rem, 5vw, 3.25rem)',
@@ -84,7 +84,7 @@ export default function HomePage() {
               }}>
                 精选科技装备，即刻送达。从手机到耳机，每一件都经过严选。
               </p>
-              <div className="flex items-center gap-3 mt-8">
+              <div className="flex items-center gap-3 mt-7">
                 <Link
                   to="/products"
                   className="inline-flex items-center gap-2 btn-gold"
@@ -134,20 +134,23 @@ export default function HomePage() {
       </section>
 
       {/* ================================================================
-          TRUST STRIP — thin data bar
+          TRUST STRIP — thin data bar, connected to hero
           ================================================================ */}
       <div style={{ background: '#FFFFFF', borderBottom: '1px solid rgba(15,23,42,0.05)' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-10 gap-y-2 py-3.5">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-8 md:gap-x-12 gap-y-1.5 py-3">
             {[
-              { label: '全国包邮', detail: '满99免运费' },
-              { label: '7天无理由', detail: '放心退换货' },
-              { label: '官方正品', detail: '品质保证' },
-              { label: '24h客服', detail: 'AI + 人工在线' },
+              { label: '全国包邮', detail: '满99免运费', icon: 'M3 4h18M5 4v12a2 2 0 002 2h10a2 2 0 002-2V4M8 21h8M10 4V1m4 3V1' },
+              { label: '7天无理由', detail: '放心退换货', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' },
+              { label: '官方正品', detail: '品质保证', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
+              { label: '24h客服', detail: 'AI + 人工在线', icon: 'M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z' },
             ].map(item => (
-              <div key={item.label} className="flex items-center gap-2.5" style={{ fontFamily: "'Inter','Noto Sans SC',system-ui,sans-serif" }}>
+              <div key={item.label} className="flex items-center gap-2" style={{ fontFamily: "'Inter','Noto Sans SC',system-ui,sans-serif" }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3D6A94" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                  <path d={item.icon} />
+                </svg>
                 <span style={{ fontSize: 12, fontWeight: 500, color: '#15181B', letterSpacing: '0.03em' }}>{item.label}</span>
-                <span style={{ fontSize: 11, color: '#8B95A5' }}>{item.detail}</span>
+                <span className="hidden sm:inline" style={{ fontSize: 11, color: '#8B95A5' }}>{item.detail}</span>
               </div>
             ))}
           </div>
@@ -157,7 +160,7 @@ export default function HomePage() {
       {/* ================================================================
           CATEGORIES — prominent, action-oriented
           ================================================================ */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-10" style={{ paddingTop: 72, paddingBottom: 80 }}>
+      <section className="max-w-7xl mx-auto px-6 lg:px-10" style={{ paddingTop: 52, paddingBottom: 64 }}>
         <div className="flex items-end justify-between mb-8">
           <div>
             <h2 style={{
@@ -254,7 +257,7 @@ export default function HomePage() {
       {/* ================================================================
           FEATURED PRODUCTS — clean grid, real data
           ================================================================ */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-10" style={{ paddingBottom: 96 }}>
+      <section className="max-w-7xl mx-auto px-6 lg:px-10" style={{ paddingBottom: 80 }}>
         <div className="flex items-end justify-between mb-8">
           <div>
             <h2 style={{
