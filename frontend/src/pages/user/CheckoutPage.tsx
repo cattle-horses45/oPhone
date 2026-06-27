@@ -39,7 +39,8 @@ export default function CheckoutPage() {
 
     try {
       // 1. 创建订单
-      const order = await createOrder({ address_id: 1, remark: '' });
+      const cartItemIds = items.map(i => i.id);
+      const order = await createOrder({ address_id: 1, cart_item_ids: cartItemIds, remark: '' });
       setOrderId(order.id);
 
       // 2. 进入支付中状态
